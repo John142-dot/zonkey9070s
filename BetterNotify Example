@@ -2,10 +2,12 @@ local NotificationLibrary = loadstring(game:HttpGet("https://raw.githubuserconte
 
 NotificationLibrary:ShowNotification(
     "Hello, this is a test notification!", 
-    "rbxassetid://3238007702",  -- Replace with your actual sound ID
+    "rbxassetid://3398620867",  -- Replace with your actual sound ID
     "rbxassetid://7743874367", -- Replace with your actual image ID
     5, -- Duration in seconds
     function()
         loadstring(game:HttpGet("Nice script url"))() -- Replace with your actual script URL
     end
 )
+-- rbxassetid://3238007702 / rbxassetid://3398620867
+-- music ids (u can do other)
