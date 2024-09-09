@@ -1,5 +1,6 @@
 -- some things done and made by @zonkey9070 on yt
 -- superthanks for lunarui on scriptblox.com for original (btbhax)
+-- BetterNotify UiLibrary
 local NotificationLibrary = {}
 
 local TEXT_COLOR = Color3.new(1, 1, 1)
@@ -7,7 +8,7 @@ local BACKGROUND_COLOR_START = Color3.fromRGB(30, 30, 60)
 local BACKGROUND_COLOR_END = Color3.fromRGB(60, 60, 90)
 local GUI_SIZE = UDim2.new(0, 300, 0, 100)
 
-function NotificationLibrary:ShowNotification(message, soundUrl, imageUrl, customDuration)
+function NotificationLibrary:ShowNotification(message, soundUrl, imageUrl, customDuration, callbackUrl)
     local sound = Instance.new("Sound")
     sound.SoundId = soundUrl
     sound.Volume = 1
@@ -98,6 +99,19 @@ function NotificationLibrary:ShowNotification(message, soundUrl, imageUrl, custo
 
     screenGui:Destroy()
     sound:Destroy()
+
+    if callbackUrl then
+        local HttpService = game:GetService("HttpService")
+        local success, response = pcall(function()
+            return HttpService:GetAsync(callbackUrl)
+        end)
+
+        if success then
+            print("Successfully executed URL:", response)
+        else
+            warn("Failed to execute URL:", response)
+        end
+    end
 end
 
 return NotificationLibrary
