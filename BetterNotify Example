@@ -5,5 +5,5 @@ NotificationLibrary:ShowNotification(
     "rbxassetid://3238007702",  -- Replace with your sussy id
     "rbxassetid://YOUR_IMAGE_ID", -- Replace with your nice image
     5, -- Duration in seconds (set it to whatever the fuck u want🤑)
-    "https://yourcallbackurl.com" -- this can either be empty or add ur script url
+    "https://yourcallbackurl.com" -- this can either be empty or add ur script url (wont work for delta or fluxus.)
 )
