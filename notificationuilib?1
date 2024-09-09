@@ -58,9 +58,9 @@ function NotificationLibrary:ShowNotification(notificationType, message, duratio
     elseif notificationType == "success" then
         iconType = "rbxassetid://6023426945" -- Success icon
     elseif notificationType == "cancel" then
-        iconType = "rbxassetid://6035047409" -- Cancel icon
+        iconType = "rbxassetid://18622638320" -- Cancel icon
     elseif notificationType == "warning" then
-        iconType = "rbxassetid://6764432293" -- Warning icon
+        iconType = "rbxassetid://18638286659" -- Warning icon
     else
         return -- Invalid type
     end
