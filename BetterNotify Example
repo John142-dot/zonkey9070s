@@ -1,5 +1,8 @@
--- Load the Notification Library
-local NotificationLibrary = loadstring(game:HttpGet("betternotify url"))()
+local NotificationLibrary = loadstring(game:HttpGet("https://pastefy.app/YYDEtz0J/raw"))()
 
--- Show a notification with a valid sound ID
-NotificationLibrary:ShowNotification("Hello, this is a test notification!", "rbxassetid://123456789", 5) -- Replace with your actual sound ID
+NotificationLibrary:ShowNotification(
+    "Hello, this is a test notification!", 
+    "rbxassetid://3238007702",  -- Replace with ur funny id
+    "rbxassetid://YOUR_IMAGE_ID", -- Replace with ur magnjficent image ID
+    5 -- Duration in seconds
+)
