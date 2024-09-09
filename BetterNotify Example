@@ -1,0 +1,5 @@
+-- Load the Notification Library
+local NotificationLibrary = loadstring(game:HttpGet("betternotify url"))()
+
+-- Show a notification with a valid sound ID
+NotificationLibrary:ShowNotification("Hello, this is a test notification!", "rbxassetid://123456789", 5) -- Replace with your actual sound ID
