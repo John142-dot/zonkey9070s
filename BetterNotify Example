@@ -1,8 +1,9 @@
-local NotificationLibrary = loadstring(game:HttpGet("https://pastefy.app/YYDEtz0J/raw"))()
+local NotificationLibrary = loadstring(game:HttpGet("https://pastebin.com/raw/7PVpL2RU"))()
 
 NotificationLibrary:ShowNotification(
     "Hello, this is a test notification!", 
-    "rbxassetid://3238007702",  -- Replace with ur funny id
-    "rbxassetid://YOUR_IMAGE_ID", -- Replace with ur magnjficent image ID
-    5 -- Duration in seconds
+    "rbxassetid://3238007702",  -- Replace with your sussy id
+    "rbxassetid://YOUR_IMAGE_ID", -- Replace with your nice image
+    5, -- Duration in seconds (set it to whatever the fuck u want🤑)
+    "https://yourcallbackurl.com" -- this can either be empty or add ur script
 )
