@@ -2,8 +2,10 @@ local NotificationLibrary = loadstring(game:HttpGet("https://raw.githubuserconte
 
 NotificationLibrary:ShowNotification(
     "Hello, this is a test notification!", 
-    "rbxassetid://3238007702",  -- Replace with your sussy id
-    "rbxassetid://YOUR_IMAGE_ID", -- Replace with your nice image
-    5, -- Duration in seconds (set it to whatever the fuck u want🤑)
-    "https://yourcallbackurl.com" -- this can either be empty or add ur script url (wont work for delta or fluxus.)
+    "rbxassetid://3238007702",  -- Replace with your actual sound ID
+    "rbxassetid://7743874367", -- Replace with your actual image ID
+    5, -- Duration in seconds
+    function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/John142-dot/bypassware/main/zbypass"))() -- Replace with your actual script URL
+    end
 )
