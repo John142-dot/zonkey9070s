@@ -1,0 +1,133 @@
+-- NotificationLibrary.lua
+
+local NotificationLibrary = {}
+
+local TweenService = game:GetService("TweenService")
+local Players = game:GetService("Players")
+local PlayerGui = Players.LocalPlayer:WaitForChild("PlayerGui")
+
+-- Function to create a notification UI
+local function createNotificationUI(iconType, message, notificationType)
+    -- Create ScreenGui
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "NotificationGui"
+    screenGui.Parent = PlayerGui
+
+    -- Create Frame
+    local notificationFrame = Instance.new("Frame")
+    notificationFrame.Size = UDim2.new(0.4, 0, 0.1, 0)
+    notificationFrame.Position = UDim2.new(0.5, -200, 1, 0) -- Start below the screen
+    notificationFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    notificationFrame.BackgroundTransparency = 1 -- Start fully transparent
+    notificationFrame.BorderSizePixel = 0
+    notificationFrame.Parent = screenGui
+
+    -- Add UICorner for squircle effect
+    local corner = Instance.new("UICorner")
+    corner.CornerRadius = UDim.new(0.2, 0)
+    corner.Parent = notificationFrame
+
+    -- Create TextLabel
+    local notificationLabel = Instance.new("TextLabel")
+    notificationLabel.Size = UDim2.new(0.8, 0, 1, 0)
+    notificationLabel.Position = UDim2.new(0.2, 0, 0, 0)
+    notificationLabel.BackgroundTransparency = 1
+    notificationLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    notificationLabel.TextScaled = true
+    notificationLabel.Text = message
+    notificationLabel.Parent = notificationFrame
+
+    -- Create Icon
+    local icon = Instance.new("ImageLabel")
+    icon.Size = UDim2.new(0.1, 0, 0.8, 0)
+    icon.Position = UDim2.new(0.05, 0, 0.1, 0)
+    icon.BackgroundTransparency = 1
+    icon.Image = iconType
+    icon.Parent = notificationFrame
+
+    -- Create Close Button
+    local closeButton = Instance.new("ImageButton")
+    closeButton.Size = UDim2.new(0.05, 0, 0.05, 0)
+    closeButton.Position = UDim2.new(0.95, 0, 0.05, 0)
+    closeButton.BackgroundTransparency = 1
+    closeButton.Image = "rbxassetid://7743878496" -- Close icon
+    closeButton.MouseButton1Click:Connect(function()
+        -- Fade out effect
+        local fadeOutTween = TweenService:Create(notificationFrame, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, false, 0), {BackgroundTransparency = 1})
+        fadeOutTween:Play()
+        fadeOutTween.Completed:Wait()
+
+        -- Cleanup
+        screenGui:Destroy()
+    end)
+    closeButton.Parent = notificationFrame
+
+    -- Set background color based on notification type
+    if notificationType == "info" then
+        notificationFrame.BackgroundColor3 = Color3.fromRGB(52, 152, 219) -- Info color
+    elseif notificationType == "success" then
+        notificationFrame.BackgroundColor3 = Color3.fromRGB(46, 204, 113) -- Success color
+    elseif notificationType == "cancel" then
+        notificationFrame.BackgroundColor3 = Color3.fromRGB(231, 76, 60) -- Cancel color
+    elseif notificationType == "warning" then
+        notificationFrame.BackgroundColor3 = Color3.fromRGB(241, 196, 15) -- Warning color
+    end
+
+    return notificationFrame, screenGui
+end
+
+-- Function to show a notification
+function NotificationLibrary:ShowNotification(notificationType, message, duration)
+    local iconType
+
+    -- Set icon based on notification type
+    if notificationType == "info" then
+        iconType = "rbxassetid://6023426923" -- Info icon
+    elseif notificationType == "success" then
+        iconType = "rbxassetid://6023426945" -- Success icon
+    elseif notificationType == "cancel" then
+        iconType = "rbxassetid://7743878496" -- Cancel icon
+    elseif notificationType == "warning" then
+        iconType = "rbxassetid://7743874367" -- Warning icon
+    else
+        return -- Invalid type
+    end
+
+    local notificationFrame, screenGui = createNotificationUI(iconType, message, notificationType)
+
+    -- Play background music
+    local sound = Instance.new("Sound")
+    sound.SoundId = "rbxassetid://3398620867" -- Music ID
+    sound.Volume = 0.5 -- Set volume (0 to 1)
+    sound.Parent = notificationFrame
+    sound:Play()
+
+    -- Fade in effect
+    local fadeInTween = TweenService:Create(notificationFrame, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, false, 0), {BackgroundTransparency = 0})
+    fadeInTween:Play()
+    fadeInTween.Completed:Wait()
+
+    -- Slide in effect
+    local slideInTween = TweenService:Create(notificationFrame, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, false, 0), {Position = UDim2.new(0.5, -200, 0.1, 0)})
+    slideInTween:Play()
+    slideInTween.Completed:Wait()
+
+    -- Wait for the duration
+    wait(duration or 3)
+
+    -- Slide out effect
+    local slideOutTween = TweenService:Create(notificationFrame, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.In, 0, false, 0), {Position = UDim2.new(0.5, -200, 1, 0)})
+    slideOutTween:Play()
+    slideOutTween.Completed:Wait()
+
+    -- Fade out effect
+    local fadeOutTween = TweenService:Create(notificationFrame, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.In, 0, false, 0), {BackgroundTransparency = 1})
+    fadeOutTween:Play()
+    fadeOutTween.Completed:Wait()
+
+    -- Cleanup
+    sound:Destroy() -- Remove the sound object
+    screenGui:Destroy()
+end
+
+return NotificationLibrary
