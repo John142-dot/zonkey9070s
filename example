@@ -1,0 +1,8 @@
+-- replace url with what ui u like
+local NotificationLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/John142-dot/zonkey9070s/main/notificationuilib%3F1"))()
+
+-- Example usage of the Notification Library
+NotificationLibrary:ShowNotification("info", "This is an informational message!", 3) -- Info notification
+NotificationLibrary:ShowNotification("success", "Operation completed successfully!", 3) -- Success notification
+NotificationLibrary:ShowNotification("cancel", "Operation was cancelled.", 3) -- Cancel notification
+NotificationLibrary:ShowNotification("warning", "This is a warning message!", 3) -- Warning notification
