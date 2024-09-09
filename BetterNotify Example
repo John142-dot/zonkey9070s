@@ -6,6 +6,6 @@ NotificationLibrary:ShowNotification(
     "rbxassetid://7743874367", -- Replace with your actual image ID
     5, -- Duration in seconds
     function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/John142-dot/bypassware/main/zbypass"))() -- Replace with your actual script URL
+        loadstring(game:HttpGet("Nice script url"))() -- Replace with your actual script URL
     end
 )
